@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحاضرة السادسة — Word / Google Docs المتقدم | Sunshine T Academy</title>
+<style>
+  :root{
+    --sun:#F5B82E; --sun-soft:#FFF6DE; --blue:#1B7FD4; --blue-dark:#0E5FA8;
+    --teal:#12A5A0; --teal-soft:#E6F7F6; --orange:#FF8A3D; --cream:#FFFBF2;
+    --card:#FFFFFF; --ink:#20303C; --muted:#5B6B76; --line:#EBDFC6;
+    --green:#2E9E5B; --red:#D9534F; --red-soft:#FFF3F3;
+    --radius:16px; --shadow:0 6px 20px rgba(32,48,60,.08);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Cairo','Segoe UI',Tahoma,Arial,sans-serif;background:var(--cream);color:var(--ink);line-height:1.9}
+  .topbar{background:linear-gradient(135deg,var(--blue),var(--blue-dark));color:#fff;padding:14px 24px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
+  .brand{font-weight:800;font-size:1.1rem}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .chip{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);padding:4px 14px;border-radius:999px;font-size:.85rem}
+  .wrap{max-width:1100px;margin:auto;padding:0 16px}
+  .hero{margin:28px auto 8px;text-align:center}
+  .hero .kicker{color:var(--blue-dark);font-weight:800;letter-spacing:1px}
+  .hero h1{margin:6px 0;font-size:2rem;color:var(--ink)}
+  .hero p{color:var(--muted);font-size:1.05rem;max-width:760px;margin:auto}
+  .meta{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0}
+  .meta span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 18px;font-weight:700;font-size:.9rem;box-shadow:var(--shadow)}
+  .map{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0 26px}
+  .map a{background:var(--sun-soft);border:1px solid var(--sun);color:#6b4d00;border-radius:999px;padding:4px 14px;font-size:.82rem;font-weight:700;text-decoration:none}
+  .map a.now{background:var(--sun);color:#fff}
+  .sec{margin:44px 0 0}
+  .sec-head{display:flex;align-items:center;gap:14px;border-bottom:3px solid var(--sun);padding-bottom:10px}
+  .sec-num{font-size:2.2rem;font-weight:900;color:var(--sun);line-height:1}
+  .sec-head h2{margin:0;font-size:1.35rem}
+  .sec-head .sub{display:block;color:var(--muted);font-size:.9rem;font-weight:700}
+  .golden{background:var(--sun-soft);border:2px dashed var(--sun);border-radius:var(--radius);padding:16px 22px;font-size:1.08rem;font-weight:800;text-align:center;margin:20px 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:16px 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+  .card .ico{font-size:1.7rem}
+  .card b{display:block;margin:8px 0 4px;color:var(--blue-dark)}
+  .def{background:var(--card);border:1px solid var(--line);border-right:6px solid var(--blue);border-radius:12px;padding:12px 18px;margin:10px 0;box-shadow:var(--shadow)}
+  .def b{color:var(--blue-dark)}
+  .tip{background:var(--teal-soft);border:1px solid var(--teal);border-radius:var(--radius);padding:14px 18px;margin:16px 0}
+  .tip b{color:var(--teal)}
+  .warn{background:var(--red-soft);border:2px dashed var(--red);border-radius:var(--radius);padding:14px 18px;font-weight:700;margin:16px 0}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin:16px 0}
+  th,td{padding:11px 14px;text-align:right;border-bottom:1px solid var(--line);font-size:.93rem;vertical-align:top}
+  th{background:var(--blue);color:#fff}
+  tr:last-child td{border-bottom:0}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin:18px 0;overflow:hidden}
+  .box .bh{padding:12px 18px;font-weight:800;color:#fff}
+  .bh.ex{background:var(--blue)} .bh.tr{background:var(--teal)} .bh.hw{background:var(--orange)}
+  .box .bb{padding:16px 20px}
+  ol.steps{margin:10px 0;padding-right:22px}
+  ol.steps li{margin-bottom:8px}
+  .result{background:var(--sun-soft);border-radius:12px;padding:10px 16px;font-weight:700;margin-top:10px}
+  kbd{background:#EEF3F7;border:1px solid #C9D6E2;border-bottom-width:3px;border-radius:6px;padding:2px 8px;font-family:Consolas,monospace;font-size:.88rem;color:var(--blue-dark)}
+  .analogy{background:linear-gradient(135deg,#FFF9EE,#FFF3D6);border:2px solid var(--sun);border-radius:var(--radius);padding:18px 22px;margin:18px 0}
+  .analogy h3{margin-top:0;color:#6b4d00}
+  .codeblock{background:#12242F;color:#E8F4EA;border-radius:12px;padding:14px 20px;font-family:Consolas,monospace;font-size:.95rem;overflow:auto;margin:14px 0;line-height:1.8;direction:ltr;text-align:left}
+  footer{background:var(--blue-dark);color:#fff;text-align:center;padding:18px;margin-top:50px;letter-spacing:2px;font-size:.85rem;font-weight:700}
+  .btn{background:var(--orange);color:#fff;border:0;border-radius:999px;padding:8px 22px;font-weight:800;cursor:pointer;font-family:inherit}
+  @media print{ .btn{display:none} body{background:#fff} .card,.box,.def{box-shadow:none} }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">☀️ Sunshine T Academy · Computer Skills · Digital Professional</div>
+  <div class="chips">
+    <span class="chip">المحاضرة 06 / 14</span>
+    <span class="chip">م/ أحمد</span>
+    <button class="btn" onclick="window.print()">🖨️ طباعة التحضير</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="kicker">المحاضرة السادسة</div>
+    <h1>Word / Google Docs المتقدم 📄</h1>
+    <p>من «نص مكتوب بأي طريقة» إلى «تقرير احترافي يفهرس نفسه» — Styles وHeadings، فهرس تلقائي، Track Changes، وقوالب جاهزة</p>
+  </section>
+
+  <div class="meta">
+    <span>المدة: 60 دقيقة</span><span>المستوى: تأسيس متقدم</span><span>الفئة العمرية: 13 – 15 سنة</span><span>الأداة: Word 365 أو Google Docs</span>
+  </div>
+
+  <nav class="map">
+    <a href="#">١ كيف يفكر الكمبيوتر؟</a><a href="#">٢ ويندوز كالمحترف</a><a href="#">٣ الشبكات والإنترنت</a><a href="#">٤ الأمان الرقمي</a><a href="#">٥ Google Workspace</a><a class="now" href="#">٦ Word المتقدم</a><a href="#">٧ Excel ج1</a><a href="#">٨ Excel ج2</a><a href="#">٩ PowerPoint</a><a href="#">١٠ AI والبحث الذكي</a><a href="#">١١ أدوات AI</a><a href="#">١٢ الصيانة</a><a href="#">١٣ السحابة والـ Backup</a><a href="#">١٤ مشروع التخرج</a><a href="#">١٥ الامتحان</a>
+  </nav>
+
+  <!-- ================= 01 ================= -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">01</span><div><h2>ليها Word المتقدم مهم ليك دلوقتي؟</h2><span class="sub">تأسيس الدافع قبل الشرح — الدقائق الأولى من المحاضرة</span></div></div>
+    <p>أي بحث مدرسي، أي مشروع مسابقة، وأي تقرير لمشروع تخرجك في محاضرة 14 — كله هيتسلم في الآخر كمستند مكتوب. اللي بيعرف ينسّق بيوصل نفس المحتوى بشكل يخلي المصحح يقرأ براحة ويقيّم أعلى — والشكل ده مهارة عمرها ما بتبطل.</p>
+    <div class="golden">القاعدة الذهبية: مستند مش منسّق = مستند مش محترم. الشكل جزء من المضمون — بحث ممتاز بخطوط عشوائية بياخد انطباع أسوأ من بحث جيد منسّق باحتراف.</div>
+    <div class="grid">
+      <div class="card"><span class="ico">📚</span><b>بحوث المدرسة</b>فهرس تلقائي، عناوين مرقّمة، هوامش مظبوطة — بحثك يبقى شكله جامعي وانت لسه في الإعدادي.</div>
+      <div class="card"><span class="ico">🎓</span><b>مشروع التخرج</b>تقرير محاضرة 14 هيتكتب بالأدوات دي بالظبط — انت بتبني أداتك من دلوقتي.</div>
+      <div class="card"><span class="ico">💼</span><b>مهارة حياة</b>أي وظيفة في الدنيا بتحتاج مستندات — اللي بيكتب مرتب بيتاخد بجدية.</div>
+    </div>
+  </section>
+
+  <!-- ================= 02 ================= -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">02</span><div><h2>الواجهة وإعداد الصفحة: الأساس قبل الكتابة</h2><span class="sub">نظري + تعريفات — ٨ دقايق</span></div></div>
+    <p>أول قاعدة في الشغل الاحترافي: متكتبش حرف واحد قبل ما تجهّز الصفحة. الإعداد الأول بيوفر ساعات تصحيح بعدين.</p>
+    <div class="def"><b>Ribbon (الشريط)</b> — شريط الأدوات فوق المقسّم تبويبات (Home, Insert, Layout, References, Review) — كل تبويب مجموعة أدوات مترابطة.</div>
+    <div class="def"><b>Page Setup</b> — إعداد الصفحة: حجم الورق A4، الاتجاه Portrait، والهوامش 2.5 سم من كل الجهات — القياسي للبحوث والتقارير.</div>
+    <div class="def"><b>Line Spacing</b> — تباعد الأسطر: القياسي للبحوث 1.5 — مريح للقراءة وبيسيب مساحة لتصحيحات المصحح.</div>
+    <div class="def"><b>Justify (ضبط)</b> — محاذاة بتخلي حواف السطور متساوية يمين وشمال — الشكل الرسمي للمستندات الجادة.</div>
+    <div class="tip"><b>نصيحة عملية:</b> لو شريط الـ Ribbon اختفى أو اتلخبط — <kbd>Ctrl</kbd>+<kbd>F1</kbd> يرجّعه. ولو لقيت تنسيق غريب مش فاهم سببه — فعّل علامات الفقرات <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>8</kbd> وشوف المسافات والفقرات المخفية.</div>
+    <div class="tip"><b>بتشتغل على Google Docs؟</b> نفس المحاضرة بتنفعك: الأنماط من القائمة المنسدلة أعلى الشريط (Normal text ← Heading 1)، والفهرس من Insert → Table of Contents، وأرقام الصفحات من Insert → Page numbers.</div>
+  </section>
+
+  <!-- ================= 03 ================= -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">03</span><div><h2>الأنماط Styles: قلب المحاضرة</h2><span class="sub">النقطة الأهم في محاضرة Word — ١٧ دقيقة</span></div></div>
+    <p>ليه Styles هي القلب؟ لأنها «لغة» Word الداخلية: بيها بيفهم إن السطر ده عنوان فصل وده عنوان فرعي وده نص عادي — وعلى الفهم ده بيتبني الفهرس التلقائي وكل حاجة جاية.</p>
+
+    <table>
+      <tr><th>✅ طريقة Styles (الصح)</th><th>❌ التنسيق اليدوي (الغلط)</th></tr>
+      <tr><td>بتحدد الدور الأول: «ده عنوان فصل» = Heading 1</td><td>تكبير الخط بالماوس لكل عنوان لوحده</td></tr>
+      <tr><td>غيّرت النمط مرة = اتغير في كل المستند لحظياً</td><td>غيّرت رأيك = تعدل 20 عنوان واحد واحد</td></tr>
+      <tr><td>الفهرس التلقائي بيشتغل لوحده</td><td>الفهرس مش هيشتغل أبداً</td></tr>
+      <tr><td>مستند منظم وثابت</td><td>مستند هش بيتبهدل مع أي تعديل</td></tr>
+    </table>
+
+    <div class="grid">
+      <div class="card"><span class="ico">📝</span><b>Normal</b>نص الفقرات العادي — الجسم الرئيسي للمستند.</div>
+      <div class="card"><span class="ico">1️⃣</span><b>Heading 1</b>عناوين الفصول الرئيسية: «الفصل الأول: مكونات جهازي».</div>
+      <div class="card"><span class="ico">2️⃣</span><b>Heading 2</b>العناوين الفرعية: «المبحث الأول: الـ RAM».</div>
+      <div class="card"><span class="ico">🏷️</span><b>Title</b>عنوان المستند نفسه في صفحة الغلاف.</div>
+    </div>
+
+    <div class="analogy">
+      <h3>🏭 تشبيه المصنع الذكي — الصورة اللي هتفضل معاك</h3>
+      <p>التنسيق اليدوي = إنك تلوّن كل طوبة في المبنى بإيدك واحدة واحدة. الـ <b>Styles</b> = قوالب صبّ جاهزة: عدّلت القالب مرة، كل الطوب اللي اتصب بيه اتعدل في ثانية — حتى اللي لسه هتكتبه. والفهرس التلقائي = كتاب بيكتب فهرسه بنفسه، لأنك قلتله أنهي سطور عناوين وأنهي سطور نص.</p>
+    </div>
+
+    <div class="def"><b>Modify Style (تخصيص النمط)</b> — كليك يمين على النمط → Modify → غيّر الخط لـ Sakkal Majalla والحجم 14 واللون — التعديل بيسري على كل المستند فوراً.</div>
+    <div class="codeblock">Ctrl + Alt + 1 → Heading 1&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Ctrl + Alt + 2 → Heading 2&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Ctrl + Alt + 3 → Heading 3</div>
+
+    <div class="box"><div class="bh ex">📋 مثال ١ — Styles على بحث علوم</div>
+      <div class="bb">
+        <b>السيناريو:</b> عندك بحث مدرسي عن الكمبيوتر — طبّق على كل سطر النمط الصح:
+        <table>
+          <tr><th>النص</th><th>النمط المطلوب</th></tr>
+          <tr><td>جهازي وكيف يفكر</td><td>Title</td></tr>
+          <tr><td>الفصل الأول: مكونات الكمبيوتر</td><td>Heading 1</td></tr>
+          <tr><td>المبحث الأول: الـ RAM والتخزين</td><td>Heading 2</td></tr>
+          <tr><td>المعالج هو عقل الكمبيوتر لأنه بينفذ التعليمات…</td><td>Normal</td></tr>
+        </table>
+        <div class="result">النتيجة: Word بقى فاهم هيكل بحثك — وده اللي هيخلي الفهرس يتعمل بضغطة واحدة بعد شوية.</div>
+      </div>
+    </div>
+
+    <div class="box"><div class="bh tr">تدريب ١ — ابنِ الهيكل بالأنماط</div>
+      <div class="bb">
+        <ol class="steps">
+          <li>اكتب «تقرير جهازي من الداخل» وطبّق <b>Title</b>.</li>
+          <li>اكتب «الفصل الأول: مكونات جهازي» — طبّق <b>Heading 1</b> بـ <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>1</kbd>.</li>
+          <li>اكتب «المبحث الأول: RAM ضد التخزين» — طبّق <b>Heading 2</b>.</li>
+          <li>اكتب 3 أسطر من بيانات تدريب المحاضرة 1 — طبّق <b>Normal</b>.</li>
+          <li>من Modify Style غيّر لون Heading 1 لأزرق غامق — وشوف كل العناوين بتتغير مع بعض.</li>
+        </ol>
+        ⏱ الوقت المتوقع: 6 دقايق
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 04 ================= -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">04</span><div><h2>الفهرس التلقائي وأرقام الصفحات</h2><span class="sub">نظري + عملي — ١٠ دقايق</span></div></div>
+    <p>دي اللحظة اللي بتبهر أي حد شافها أول مرة: فهرس كامل بأرقام صفحات حقيقية — بيتعمل في 5 ثواني — وبيتحدث لوحده.</p>
+    <div class="def"><b>Table of Contents (الفهرس)</b> — References → Table of Contents → Automatic — بيجمع كل عناوين Heading 1 و2 بأرقام صفحاتها. شرطه الوحيد: إنك تكون مستخدم Styles صح.</div>
+    <div class="def"><b>Update Table</b> — عدّلت عناوين أو صفحات؟ كليك يمين على الفهرس → Update Field → Update entire table — الفهرس بيصلح نفسه.</div>
+    <div class="def"><b>Page Number</b> — Insert → Page Number → Bottom of Page — أرقام صفحات احترافية في ثانية.</div>
+    <div class="def"><b>Page Break (فاصل صفحات)</b> — <kbd>Ctrl</kbd>+<kbd>Enter</kbd> بيبدأ صفحة جديدة صح. ممنوع نهائياً Enter Enter Enter لحد ما الصفحة تخلص — ده بيبهدل كل حاجة مع أي تعديل.</div>
+
+    <div class="box"><div class="bh ex">📋 مثال ٢ — الفهرس اللي بيصلح نفسه</div>
+      <div class="bb">
+        <b>السيناريو:</b> عملت الفهرس، وبعدين ضفت فصل رابع وزوّدت نص خلّى الصفحات تتزحزح.
+        <ol class="steps">
+          <li>الفهرس القديم لسه معروض بـ 3 فصول وأرقام قديمة — طبيعي، مش عيب.</li>
+          <li>كليك يمين على الفهرس → <b>Update Field</b>.</li>
+          <li>اختار <b>Update entire table</b> → OK.</li>
+          <li>الفصل الرابع ظهر والأرقام اتظبطت كلها — من غير ما تلمس حاجة بإيدك.</li>
+        </ol>
+        <div class="result">النتيجة: الفهرس كائن حي بيتحدث — مش صورة ثابتة بتكذب بعد كل تعديل.</div>
+      </div>
+    </div>
+
+    <div class="box"><div class="bh tr">تدريب ٢ — فهرس وأرقام في دقيقة</div>
+      <div class="bb">
+        <ol class="steps">
+          <li>في مستند تدريب 1: حط المؤشر أول المستند بـ <kbd>Ctrl</kbd>+<kbd>Home</kbd>.</li>
+          <li>References → Table of Contents → Automatic Table 1.</li>
+          <li>Insert → Page Number → Bottom of Page.</li>
+          <li>ضيف «المبحث الثاني: المعالج» كـ Heading 2 في آخر المستند.</li>
+          <li>حدّث الفهرس وشوف المبحث الجديد ظهر لوحده.</li>
+        </ol>
+        ⏱ الوقت المتوقع: 5 دقايق
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 05 ================= -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">05</span><div><h2>Track Changes والقوالب Templates</h2><span class="sub">مراجعة احترافية + اختصار الوقت — ١٠ دقايق</span></div></div>
+    <div class="def"><b>Track Changes (تتبع التغييرات)</b> — Review → Track Changes: أي تعديل بيظهر ملوّن ومشطوب/مضاف في الهامش — من غير ما يمسح شغل原作者 الأصلي.</div>
+    <div class="def"><b>Accept / Reject</b> — صاحب المستند بيمر على كل تعديل ويقرر: يقبله أو يرفضه — مراجعة منظمة بدل «مين مسح الفقرة دي؟!».</div>
+    <div class="def"><b>Comments (التعليقات)</b> — Review → New Comment: ملاحظة على جملة معينة من غير لمس النص — نفس فكرة تعليقات Docs من محاضرة 5.</div>
+    <div class="def"><b>Template (قالب)</b> — ملف نموذجي جاهز بتنسيقك المفضل: بتفتحه وتكتب على طول. احفظ تنسيقك مرة واحدة كـ Template (.dotx) — وكل بحث جاي يبدأ احترافي من الثانية الأولى.</div>
+    <div class="tip"><b>على Google Docs:</b> المكافئ للـ Track Changes هو وضع <b>Suggesting</b> اللي اتعلمناه في محاضرة 5، والمكافئ للقالب = تحفظ ملف منسّق باسم «قالب_بحوثي» وتعمل منه Make a copy لكل بحث جديد.</div>
+
+    <div class="box"><div class="bh ex">📋 مثال ٣ — المعلم بيراجع بحثك</div>
+      <div class="bb">
+        <b>السيناريو:</b> سلّمت بحثك للمعلم، ورجعلك «مبهدل» بالألوان — متتخضش، ده شغل محترف.
+        <ol class="steps">
+          <li>المعلم شغّل Track Changes وعدّل صياغتك — تعديلاته ظهرت بالأحمر.</li>
+          <li>ساب Comment على المبحث التاني: «ضيف مثال من حياتك هنا».</li>
+          <li>انت فتحت المستند ومرّيت على كل تعديل: Accept للصح وReject للي مش مقتنع بيه.</li>
+          <li>سلّمت النسخة النهائية نظيفة — والفريق كله فاهم إيه اللي اتغير وليه.</li>
+        </ol>
+        <div class="result">النتيجة: المراجعة بقت عملية موثقة ومحترمة — مش شطب ومحو وكلام في الجروبات.</div>
+      </div>
+    </div>
+
+    <div class="box"><div class="bh tr">تدريب ٣ — راجع زميلك زي المحترفين</div>
+      <div class="bb">
+        <ol class="steps">
+          <li>بدّل مستندك مع زميلك جنبك (أو شاركه على Docs بوضع Suggesting).</li>
+          <li>شغّل Track Changes وعدّل سطرين عند زميلك + سيب Comment واحد.</li>
+          <li>استرجع مستندك: مرّ على تعديلاته بـ Accept / Reject.</li>
+          <li>احفظ تنسيقك الحالي كـ Template: File → Save As → Word Template.</li>
+        </ol>
+        ⏱ الوقت المتوقع: 6 دقايق
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 06 ================= -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">06</span><div><h2>اختصارات Word الاحترافية</h2><span class="sub">جدول مرجعي شامل — احتفظ بهذه الصفحة</span></div></div>
+    <table>
+      <tr><th>الاختصار</th><th>الوظيفة</th><th>هتحتاجه إمتى كـ Digital Professional</th></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>حفظ فوري</td><td>كل 5 دقايق — عادة عمرها ما تخونك</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Y</kbd></td><td>تراجع / إعادة</td><td>تنسيق باظ؟ ارجع في ثانية</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>A</kbd></td><td>تحديد الكل</td><td>تغيير خط المستند كله مرة واحدة</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>B</kbd> / <kbd>I</kbd> / <kbd>U</kbd></td><td>غامق / مائل / تسطير</td><td>تمييز المصطلحات المهمة</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>E</kbd></td><td>توسيط</td><td>صفحة الغلاف والعناوين</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>J</kbd></td><td>ضبط (Justify)</td><td>المحاذاة الرسمية للنصوص</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>5</kbd></td><td>تباعد 1.5</td><td>التباعد القياسي للبحوث</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>1</kbd>/<kbd>2</kbd>/<kbd>3</kbd></td><td>Heading 1/2/3</td><td>بناء الهيكل من غير ماوس</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>Enter</kbd></td><td>فاصل صفحات</td><td>بداية فصل جديد — مش Enter ×20</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>Home</kbd></td><td>أول المستند</td><td>تروح لأول صفحة في ثانية</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>F</kbd> / <kbd>H</kbd></td><td>بحث / استبدال</td><td>تغيّر اسم في 30 صفحة بضغطة</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>8</kbd></td><td>إظهار علامات ¶</td><td>كشف المسافات والفقرات المخفية</td></tr>
+      <tr><td><kbd>F12</kbd></td><td>حفظ باسم (Save As)</td><td>نسخة جديدة من غير لمس الأصل</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>P</kbd></td><td>طباعة</td><td>المعاينة قبل الطباعة تنقذ ورق وأعصاب</td></tr>
+    </table>
+  </section>
+
+  <!-- ================= 07 ================= -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">07</span><div><h2>قاموس المصطلحات الأساسية</h2><span class="sub">مرجع سريع — ارجع إليه وقت المراجعة</span></div></div>
+    <div class="def"><b>Ribbon</b> — شريط الأدوات الرئيسي المقسّم تبويبات.</div>
+    <div class="def"><b>Page Setup</b> — إعداد الصفحة: حجم واتجاه وهوامش — الخطوة الأولى دايماً.</div>
+    <div class="def"><b>Margins</b> — الهوامش: المسافة بين النص وحواف الورقة — القياسي 2.5 سم.</div>
+    <div class="def"><b>Style</b> — مجموعة إعدادات تنسيق جاهزة بتتطبق بضغطة — أساس الاحتراف.</div>
+    <div class="def"><b>Heading 1/2/3</b> — أنماط العناوين اللي بيبنى بيها Word هيكل المستند والفهرس.</div>
+    <div class="def"><b>Normal</b> — نمط نص الفقرات العادي — الأكثر استخداماً.</div>
+    <div class="def"><b>Modify Style</b> — تعديل النمط نفسه فينعكس على كل المستند.</div>
+    <div class="def"><b>Table of Contents</b> — الفهرس التلقائي المبنِي على الـ Headings.</div>
+    <div class="def"><b>Page Break</b> — فاصل صفحات صحيح بـ Ctrl+Enter — مش أسطر Enter متكررة.</div>
+    <div class="def"><b>Line Spacing</b> — تباعد الأسطر — القياسي للبحوث 1.5.</div>
+    <div class="def"><b>Justify</b> — محاذاة الضبط: حواف متساوية يمين وشمال.</div>
+    <div class="def"><b>Track Changes</b> — تتبع التعديلات ملوّنة مع قبول أو رفض كل تعديل.</div>
+    <div class="def"><b>Template</b> — قالب جاهز بتنسيقك — بيختصر أول ساعة من كل مستند.</div>
+    <div class="def"><b>¶ (Paragraph Marks)</b> — علامات التنسيق المخفية — بتكشف أسباب البهدلة.</div>
+  </section>
+
+  <!-- ================= 08 ================= -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">08</span><div><h2>المقاسات المعيارية لتقرير احترافي</h2><span class="sub">جدول مرجعي — علّقه في دماغك</span></div></div>
+    <table>
+      <tr><th>العنصر</th><th>الحجم</th><th>التنسيق</th></tr>
+      <tr><td>عنوان التقرير الرئيسي (Title)</td><td>18 – 20</td><td>Bold + توسيط</td></tr>
+      <tr><td>عنوان فصل (Heading 1)</td><td>16</td><td>Bold</td></tr>
+      <tr><td>عنوان فرعي (Heading 2)</td><td>14</td><td>Bold</td></tr>
+      <tr><td>نص الفقرات (Normal)</td><td>14 عربي</td><td>عادي + Justify + تباعد 1.5</td></tr>
+      <tr><td>الملاحظات الصغيرة</td><td>10 – 11</td><td>عادي</td></tr>
+    </table>
+    <div class="tip"><b>قاعدة الخطوط:</b> للعربي: <b>Sakkal Majalla</b> أو <b>Traditional Arabic</b> — ولأرقام وإنجليزي: Times New Roman. خط واحد موحد للمستند كله — ابتعد عن خطوط الاستعراضات زي Comic Sans في الشغل الجاد.</div>
+    <div class="warn">⚠️ خطأ شائع جداً: خلط خطوط مختلفة في نفس المستند (فقرة Calibri وفقرة Arial). المستند المحترم = خط واحد موحد من أول سطر لآخر سطر.</div>
+  </section>
+
+  <!-- ================= 09 ================= -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">09</span><div><h2>التدريب الختامي: تقرير 3 صفحات احترافي</h2><span class="sub">تطبيق شامل — ١٢ دقيقة</span></div></div>
+    <div class="box"><div class="bh tr">تدريب ختامي — «تقرير جهازي من الداخل»</div>
+      <div class="bb">
+        <ol class="steps">
+          <li>مستند جديد: A4 + Portrait + هوامش 2.5 سم — قبل أي كتابة.</li>
+          <li>عنوان Title: «تقرير جهازي من الداخل» + اسمك تحته — وسّط بـ <kbd>Ctrl</kbd>+<kbd>E</kbd>.</li>
+          <li>فصل 1 Heading 1: «مكونات جهازي» — ومبحثين Heading 2: «RAM والتخزين» و«المعالج» — ببياناتك من محاضرة 1.</li>
+          <li>فصل 2 Heading 1: «شبكتي البيتية» — بمعلومات الـ ipconfig من محاضرة 3.</li>
+          <li>فصل 3 Heading 1: «حمايتي الرقمية» — بإجراءاتك من محاضرة 4.</li>
+          <li>عدّل نمط Normal بـ Modify: خط Sakkal Majalla حجم 14 + تباعد 1.5 + Justify.</li>
+          <li>أول المستند: فهرس تلقائي + أرقام صفحات أسفل كل صفحة.</li>
+          <li>احفظ باسم «تقرير_جهازي_اسمك» + Screenshot للفهرس في مجلد لقطاتك.</li>
+        </ol>
+        ⏱ الوقت المتوقع: 12 دقيقة
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 10 ================= -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">10</span><div><h2>الواجب البيتي والمراجعة الذاتية</h2><span class="sub">سلّمه في المحاضرة الجاية — بيمهّد لمحاضرة «Excel ج1»</span></div></div>
+    <div class="box"><div class="bh hw">الواجب: التقرير النهائي + قالبك الشخصي</div>
+      <div class="bb">
+        <ol class="steps">
+          <li><b>كمّل التقرير:</b> 3 صفحات كاملة بمحتوى حقيقي من بياناتك — وحدّث الفهرس في الآخر.</li>
+          <li><b>قالبك:</b> احفظ نسخة بتنسيقك كـ Template باسم «قالب_بحوثي_اسمك» — استخدمه في أي بحث مدرسي جاي.</li>
+          <li><b>مراجعة عائلية:</b> خلي ولي أمرك يفتح المستند بـ Track Changes ويعدّل جملة — وانت تقبل أو ترفض.</li>
+          <li><b>الاختصارات:</b> سجل 6 اختصارات استخدمتها فعلاً في التقرير.</li>
+          <li><b>الحفظ:</b> التقرير في مجلد «أبحاث» على Drive (محاضرة 5) + شاركه مع المحاضر Viewer.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card"><b>🤔 أسئلة نظرية</b>
+        ١. ليه Styles أحسن من التنسيق اليدوي؟ (3 أسباب)<br>
+        ٢. إيه شرط اشتغال الفهرس التلقائي؟<br>
+        ٣. الفرق بين Page Break وضغط Enter لحد صفحة جديدة؟<br>
+        ٤. إيه الـ Track Changes وإمتى نحتاجه؟<br>
+        ٥. إيه الـ Template وإزاي بيوفر وقتك؟
+      </div>
+      <div class="card"><b>⌨️ أسئلة عملية</b>
+        ١. إزاي تطبق Heading 1 من غير ماوس؟<br>
+        ٢. اختصار تباعد 1.5؟<br>
+        ٣. إزاي تعمل فهرس تلقائي وأرقام صفحات؟<br>
+        ٤> ضفت فصل جديد — إزاي تحدّث الفهرس؟<br>
+        ٥. فين بتقبل أو ترفض تعديلات المراجع؟
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>SUNSHINE T ACADEMY — COMPUTER SKILLS — DIGITAL PROFESSIONAL — LECTURE 06 / 14 — REVIEW SHEET</footer>
+
+</body>
+</html>
